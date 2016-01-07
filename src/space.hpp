@@ -12,15 +12,25 @@ public:
     Space();
     Space(const std::size_t& size);
     void reset(const std::size_t& size);
+
     std::string& symbol(std::size_t index);
     const std::string& symbol(std::size_t index) const;
+
     Vector3d& coordinate(std::size_t index);
     const Vector3d& coordinate(std::size_t index) const;
+
     Vector3d& velocity(std::size_t index);
     const Vector3d& velocity(std::size_t index) const;
-    std::size_t num_beads() const;
-    double& t();
-    const double& t() const;
+
+    std::size_t num_beads() const {
+        return _coordinates.size();
+    }
+    double t() const {
+        return _t;
+    }
+    void set_t(double t) {
+        _t = t;
+    }
 
 protected:
     std::vector<std::string> _symbols;
