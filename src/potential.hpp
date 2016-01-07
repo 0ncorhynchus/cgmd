@@ -6,13 +6,13 @@
 #include <vector>
 #include <map>
 
-class ForceField {
+class Potential {
 public:
     virtual double calculate_energy(const Space& space) const = 0;
     virtual vector_list calculate_force(const Space& space) const = 0;
 };
 
-class BondingForceField : public ForceField {
+class BondingPotential : public Potential {
 public:
     bool add_bond(const std::size_t& id0, const std::size_t& id1, double r, double k);
     double get_r(const std::size_t& id0, const std::size_t& id1) const;

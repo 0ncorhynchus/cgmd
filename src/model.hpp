@@ -1,14 +1,14 @@
 #ifndef __MODEL_HPP
 #define __MODEL_HPP
 
-#include "force_field.hpp"
+#include "potential.hpp"
 #include <map>
 #include <vector>
 #include <memory>
 
 class Model {
 public:
-    using potential_container = std::vector<std::shared_ptr<ForceField> >;
+    using potential_container = std::vector<std::shared_ptr<Potential> >;
 
     Model();
     Model(std::size_t size);
@@ -21,7 +21,7 @@ public:
     vector_list calculate_force(std::shared_ptr<Space> space) const;
     double calculate_energy(std::shared_ptr<Space> space) const;
 
-    void add_potential(std::shared_ptr<ForceField> potential);
+    void add_potential(std::shared_ptr<Potential> potential);
     bool remove_potential(const std::size_t& i);
     const potential_container& list_potentials() const;
 

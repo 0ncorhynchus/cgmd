@@ -39,7 +39,7 @@ double Model::get_friction(const std::size_t& id) const {
     return _property_list.at(id).second;
 }
 
-void Model::add_potential(std::shared_ptr<ForceField> potential) {
+void Model::add_potential(std::shared_ptr<Potential> potential) {
     _potentials.push_back(potential);
 }
 

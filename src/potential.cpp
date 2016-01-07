@@ -1,4 +1,4 @@
-#include "force_field.hpp"
+#include "potential.hpp"
 #include <iostream>
 #include <cmath>
 
@@ -9,7 +9,7 @@ std::pair<std::size_t, std::size_t> make_sorted_pair(
     return std::make_pair(id1, id0);
 }
 
-bool BondingForceField::add_bond(const std::size_t& id0, const std::size_t& id1,
+bool BondingPotential::add_bond(const std::size_t& id0, const std::size_t& id1,
         double r, double k) {
     auto key(make_sorted_pair(id0, id1));
     if (_map.find(key) != _map.end())
@@ -20,7 +20,7 @@ bool BondingForceField::add_bond(const std::size_t& id0, const std::size_t& id1,
     return true;
 }
 
-double BondingForceField::get_r(const std::size_t& id0, const std::size_t& id1) const {
+double BondingPotential::get_r(const std::size_t& id0, const std::size_t& id1) const {
     auto key(make_sorted_pair(id0, id1));
     auto itr(_map.find(key));
     if (itr == _map.end())
@@ -28,7 +28,7 @@ double BondingForceField::get_r(const std::size_t& id0, const std::size_t& id1) 
     return (*itr).second.first;
 }
 
-double BondingForceField::get_k(const std::size_t& id0, const std::size_t& id1) const {
+double BondingPotential::get_k(const std::size_t& id0, const std::size_t& id1) const {
     auto key(make_sorted_pair(id0, id1));
     auto itr(_map.find(key));
     if (itr == _map.end())
@@ -36,7 +36,7 @@ double BondingForceField::get_k(const std::size_t& id0, const std::size_t& id1) 
     return (*itr).second.second;
 }
 
-double BondingForceField::calculate_energy(const Space& space) const {
+double BondingPotential::calculate_energy(const Space& space) const {
     double energy(0);
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
@@ -54,7 +54,7 @@ double BondingForceField::calculate_energy(const Space& space) const {
     return energy;
 }
 
-vector_list BondingForceField::calculate_force(const Space& space) const {
+vector_list BondingPotential::calculate_force(const Space& space) const {
     vector_list force_list(space.num_beads(), Vector3d(0,0,0));
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
