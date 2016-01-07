@@ -9,14 +9,14 @@ namespace {
 
 class LangevinStepperTest : public ::testing::Test {
 protected:
-    virtual void SetUp() {
-        gen = std::mt19937(rnd());
-        space = std::make_shared<Space>();
-        model = std::make_shared<Model>();
-        stepper = LangevinStepper(space, model, gen,
-                /* dt= */0.2, /* T= */200);
+    LangevinStepperTest() :
+        rnd(), gen(rnd()),
+        space(new Space()),
+        model(new Model()),
+        stepper(space, model, gen, /* dt= */0.2, /* T= */200) {
     }
 
+    // virtual void SetUp() {}
     // virtual void TearDown() {}
 
     std::random_device rnd;

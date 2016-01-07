@@ -1,7 +1,21 @@
 #include "langevin_stepper.hpp"
 #include "constants.hpp"
+#include <memory>
 
-LangevinStepper::LangevinStepper() {
+LangevinStepper::LangevinStepper() : _dt(0), _T(0) {
+}
+
+LangevinStepper::LangevinStepper(const LangevinStepper& stepper)
+        : _dt(stepper._dt), _T(stepper._T) {
+#define COPY_VECTOR(VAR) \
+    copy(stepper.VAR.begin(), stepper.VAR.end(), back_inserter(VAR))
+    COPY_VECTOR(_acceleration_list);
+    COPY_VECTOR(_deviation);
+    COPY_VECTOR(_const_term2);
+    COPY_VECTOR(_const_term3);
+    COPY_VECTOR(_const_term4);
+    COPY_VECTOR(_mass_list);
+#undef COPY_VECTOR
 }
 
 LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,

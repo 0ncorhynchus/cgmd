@@ -1,7 +1,6 @@
 #ifndef __LANGEVIN_STEPPER_HPP
 #define __LANGEVIN_STEPPER_HPP
 
-#include <memory>
 #include <random>
 #include "space.hpp"
 #include "model.hpp"
@@ -14,6 +13,7 @@ public:
 class LangevinStepper : public Stepper {
 public:
     LangevinStepper();
+    LangevinStepper(const LangevinStepper& stepper);
     LangevinStepper(
         std::shared_ptr<Space> space,
         std::shared_ptr<Model> model,
@@ -30,8 +30,8 @@ protected:
     std::shared_ptr<Model> _model;
     std::normal_distribution<> _dist;
     std::mt19937 _gen;
-    double _dt;
-    double _T;
+    const double _dt;
+    const double _T;
     vector_list _acceleration_list;
     std::vector<double> _deviation;   // == rlan_const(1)
     std::vector<double> _const_term2; // == rlan_const(2)
