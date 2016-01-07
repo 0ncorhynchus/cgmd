@@ -10,6 +10,8 @@ class Model {
 public:
     using potential_container = std::vector<std::shared_ptr<ForceField> >;
 
+    Model();
+    Model(std::size_t size);
     void set_dt(double dt);
     void reset(const std::size_t& size);
     void set_property(const std::size_t& id, double mass, double friction);

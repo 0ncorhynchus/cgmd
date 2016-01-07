@@ -1,5 +1,11 @@
 #include "model.hpp"
 
+Model::Model() {}
+
+Model::Model(std::size_t size) {
+    reset(size);
+}
+
 void Model::set_dt(double dt) {
     _dt = dt;
 }
