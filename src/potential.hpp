@@ -3,7 +3,6 @@
 
 #include "vector3d.hpp"
 #include "space.hpp"
-#include <vector>
 #include <map>
 
 class Potential {

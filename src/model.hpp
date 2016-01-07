@@ -2,7 +2,6 @@
 #define __MODEL_HPP
 
 #include "potential.hpp"
-#include <map>
 #include <vector>
 #include <memory>
 
