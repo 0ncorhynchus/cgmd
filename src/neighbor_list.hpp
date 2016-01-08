@@ -13,10 +13,12 @@ public:
     iterator begin(std::size_t) const;
     iterator end(std::size_t) const;
     void add_pair(std::size_t i, std::size_t j);
+    void add_distance(std::list<double> distances);
 
 protected:
     std::list<std::size_t> _container;
     std::vector<iterator> _itrs;
+    std::list<double> _distances;
 
 };
 

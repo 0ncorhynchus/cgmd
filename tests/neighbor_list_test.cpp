@@ -14,7 +14,7 @@ protected:
 };
 
 TEST_F(NeighborListTest, Iterator) {
-    for (int i(0); i < 5; ++i)
+    for (int i(0); i < 4; ++i)
         EXPECT_EQ(neighbor_list.begin(i), neighbor_list.end(i));
 }
 
@@ -25,7 +25,6 @@ TEST_F(NeighborListTest, AddPair) {
     EXPECT_EQ(3, *(neighbor_list.begin(0)));
     EXPECT_NE(neighbor_list.begin(2), neighbor_list.end(2));
     EXPECT_EQ(neighbor_list.end(2), neighbor_list.begin(3));
-    EXPECT_EQ(neighbor_list.end(2), neighbor_list.begin(4));
     neighbor_list.add_pair(2,4);
     EXPECT_EQ(3, *(neighbor_list.begin(2)));
     EXPECT_EQ(3, *(neighbor_list.begin(1)));
@@ -33,7 +32,6 @@ TEST_F(NeighborListTest, AddPair) {
     EXPECT_EQ(4, *(++neighbor_list.begin(2)));
     EXPECT_NE(neighbor_list.begin(2), neighbor_list.end(2));
     EXPECT_EQ(neighbor_list.end(2), neighbor_list.begin(3));
-    EXPECT_EQ(neighbor_list.end(2), neighbor_list.begin(4));
 }
 
 }
