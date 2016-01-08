@@ -1,6 +1,7 @@
 #include "langevin_stepper.hpp"
 #include "constants.hpp"
 #include <memory>
+#include <math.h>
 
 LangevinStepper::LangevinStepper() : _dt(0), _T(0) {
 }
@@ -51,7 +52,7 @@ void LangevinStepper::step() {
 
     // Update Force
     vector_list force_list(num_beads, Vector3d(0,0,0));
-    const Model::potential_container potentials(_model->list_potentials());
+    const Model::potential_container& potentials(_model->list_potentials());
     for (auto itr(potentials.begin()); itr != potentials.end(); ++itr)
         force_list += (*itr)->calculate_force(*(_space.get()));
 
@@ -75,8 +76,11 @@ double LangevinStepper::get_unit_white_noise() {
 }
 
 Vector3d LangevinStepper::get_unit_random_force() {
+    const double r(get_unit_white_noise());
+    const double t(get_unit_white_noise() * M_PI);
+    const double p(get_unit_white_noise() * M_PI * 2);
     return Vector3d(
-            get_unit_white_noise(),
-            get_unit_white_noise(),
-            get_unit_white_noise());
+            r * sin(t) * cos(p),
+            r * sin(t) * sin(p),
+            r * cos(t));
 }
