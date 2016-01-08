@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
 #include "space.hpp"
-#include "potential.hpp"
+#include "bonding_potential.hpp"
 
 namespace {
 

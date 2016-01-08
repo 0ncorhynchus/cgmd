@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <memory>
-#include "potential.hpp"
+#include "bonding_potential.hpp"
 #include "model.hpp"
 
 namespace {
