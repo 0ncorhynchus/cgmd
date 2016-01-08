@@ -1,7 +1,7 @@
 set(TEST_NAMES
     vector3d_test space_test model_test space_io_test
     langevin_stepper_test neighbor_list_test
-    bonding_potential_test
+    bonding_potential_test lennard_jones_potential_test
     )
 
 find_package(GTest REQUIRED)

@@ -43,6 +43,10 @@ void Model::add_potential(std::shared_ptr<Potential> potential) {
     _potentials.push_back(potential);
 }
 
+void Model::add_potential(std::shared_ptr<PairwisePotential> potential) {
+    //_potentials.push_back(potential); TODO
+}
+
 bool Model::remove_potential(const std::size_t& i) {
     if (i < 0 || i >= _potentials.size())
         return false;
