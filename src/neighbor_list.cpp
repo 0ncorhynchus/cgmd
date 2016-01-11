@@ -1,8 +1,12 @@
 #include "neighbor_list.hpp"
 
 NeighborList::NeighborList(std::size_t size) {
+    _container.clear();
     _itrs.resize(size, _container.begin());
-    _distances.resize(size, 0);
+}
+
+std::size_t NeighborList::size() const {
+    return _itrs.size();
 }
 
 NeighborList::iterator NeighborList::begin(std::size_t id) const {
@@ -18,12 +22,4 @@ void NeighborList::add_pair(std::size_t i, std::size_t j) {
     const iterator itr(_container.insert(end, j));
     for (int id(i); id >= 0 && _itrs.at(id) == end; --id)
         _itrs.at(id) = itr;
-}
-
-void NeighborList::add_distance(std::list<double> distances) {
-    auto itr(distances.begin());
-    auto _itr(_distances.begin());
-    while (itr != distances.end() && _itr != _distances.end()) {
-        *(_itr++) += *(itr++);
-    }
 }
