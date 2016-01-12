@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <memory>
-#include "bonding_potential.hpp"
+#include "harmonic_bond_potential.hpp"
 #include "model.hpp"
 
 namespace {
@@ -36,9 +36,9 @@ TEST_F(ModelTest, Friction) {
 }
 
 TEST_F(ModelTest, Potential) {
-    std::shared_ptr<BondingPotential> bfield(new BondingPotential());
-    bfield->add_bond(0, 1,/* r= */ 0.5, /* k= */ 2.0);
-    model.add_potential(bfield);
+    std::shared_ptr<HarmonicBondPotential> bond_potential(new HarmonicBondPotential());
+    bond_potential->add_bond(0, 1,/* r= */ 0.5, /* k= */ 2.0);
+    model.add_potential(bond_potential);
     EXPECT_EQ(1, model.list_potentials().size());
 }
 

@@ -1,7 +1,7 @@
-#include "bonding_potential.hpp"
+#include "harmonic_bond_potential.hpp"
 #include <cmath>
 
-bool BondingPotential::add_bond(const std::size_t& id0, const std::size_t& id1,
+bool HarmonicBondPotential::add_bond(const std::size_t& id0, const std::size_t& id1,
         double r, double k) {
     auto key(make_sorted_pair(id0, id1));
     if (_map.find(key) != _map.end())
@@ -12,7 +12,7 @@ bool BondingPotential::add_bond(const std::size_t& id0, const std::size_t& id1,
     return true;
 }
 
-double BondingPotential::get_r(const std::size_t& id0, const std::size_t& id1) const {
+double HarmonicBondPotential::get_r(const std::size_t& id0, const std::size_t& id1) const {
     auto key(make_sorted_pair(id0, id1));
     auto itr(_map.find(key));
     if (itr == _map.end())
@@ -20,7 +20,7 @@ double BondingPotential::get_r(const std::size_t& id0, const std::size_t& id1) c
     return (*itr).second.first;
 }
 
-double BondingPotential::get_k(const std::size_t& id0, const std::size_t& id1) const {
+double HarmonicBondPotential::get_k(const std::size_t& id0, const std::size_t& id1) const {
     auto key(make_sorted_pair(id0, id1));
     auto itr(_map.find(key));
     if (itr == _map.end())
@@ -28,7 +28,7 @@ double BondingPotential::get_k(const std::size_t& id0, const std::size_t& id1) c
     return (*itr).second.second;
 }
 
-double BondingPotential::calculate_energy(const Space& space) const {
+double HarmonicBondPotential::calculate_energy(const Space& space) const {
     double energy(0);
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
@@ -46,7 +46,7 @@ double BondingPotential::calculate_energy(const Space& space) const {
     return energy;
 }
 
-vector_list BondingPotential::calculate_force(const Space& space) const {
+vector_list HarmonicBondPotential::calculate_force(const Space& space) const {
     vector_list force_list(space.num_beads(), Vector3d(0,0,0));
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
@@ -65,4 +65,12 @@ vector_list BondingPotential::calculate_force(const Space& space) const {
     }
 
     return force_list;
+}
+
+std::list<std::pair<std::size_t, std::size_t> > HarmonicBondPotential::list_bond() const {
+    std::list<std::pair<std::size_t, std::size_t> > list;
+    for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
+        list.push_back((*itr).first);
+    }
+    return list;
 }
