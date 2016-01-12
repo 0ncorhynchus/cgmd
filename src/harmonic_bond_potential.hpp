@@ -11,7 +11,7 @@ public:
     double get_k(const std::size_t& id0, const std::size_t& id1) const;
     double calculate_energy(const Space& space) const;
     vector_list calculate_force(const Space& space) const;
-    std::list<std::pair<std::size_t, std::size_t> > list_bond() const;
+    std::list<std::pair<std::size_t, std::size_t> > list_bonds() const;
 
 protected:
     std::map<std::pair<std::size_t, std::size_t>,

@@ -35,6 +35,6 @@ vector_list FENEBondPotential::calculate_force(const Space& space) const {
     return forces;
 }
 
-std::list<std::pair<std::size_t, std::size_t> > FENEBondPotential::list_bond() const {
+std::list<std::pair<std::size_t, std::size_t> > FENEBondPotential::list_bonds() const {
     return _bonds;
 }

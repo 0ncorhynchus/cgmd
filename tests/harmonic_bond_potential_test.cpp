@@ -22,6 +22,10 @@ TEST_F(HarmonicBondPotentialTest, AddBond) {
     EXPECT_FALSE(potential.add_bond(1,0,/* r= */0.57,/* k= */2.0));
 }
 
+TEST_F(HarmonicBondPotentialTest, ListBonds) {
+    EXPECT_EQ(2, potential.list_bonds().size());
+}
+
 TEST_F(HarmonicBondPotentialTest, R) {
     EXPECT_EQ(0.5, potential.get_r(0,1));
     EXPECT_EQ(0.5, potential.get_r(1,0));

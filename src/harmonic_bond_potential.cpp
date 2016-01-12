@@ -67,7 +67,7 @@ vector_list HarmonicBondPotential::calculate_force(const Space& space) const {
     return force_list;
 }
 
-std::list<std::pair<std::size_t, std::size_t> > HarmonicBondPotential::list_bond() const {
+std::list<std::pair<std::size_t, std::size_t> > HarmonicBondPotential::list_bonds() const {
     std::list<std::pair<std::size_t, std::size_t> > list;
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
         list.push_back((*itr).first);

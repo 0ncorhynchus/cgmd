@@ -10,7 +10,7 @@ public:
     void add_bond(const std::pair<std::size_t, std::size_t>& pair);
     double calculate_energy(const Space& space) const;
     vector_list calculate_force(const Space& space) const;
-    std::list<std::pair<std::size_t, std::size_t> > list_bond() const;
+    std::list<std::pair<std::size_t, std::size_t> > list_bonds() const;
 
 protected:
     const double _r0, _k;
