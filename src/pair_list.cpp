@@ -1,16 +1,16 @@
 #include "pair_list.hpp"
 
 PairList::PairList(std::size_t size) {
-    _itrs.resize(size, _container.begin());
+    _itrs.resize(size+1, _container.begin());
 }
 
 std::size_t PairList::size() const {
-    return _itrs.size();
+    return _itrs.size()-1;
 }
 
 void PairList::clear() {
     _container.clear();
-    _itrs.resize(size(), _container.begin());
+    _itrs.resize(_itrs.size(), _container.begin());
 }
 
 PairList::iterator PairList::begin(std::size_t id) const {
