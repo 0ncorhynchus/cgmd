@@ -2,7 +2,7 @@
 
 double PairwisePotential::calculate_energy(const Space& space) const {
     double energy(0);
-    if(std::shared_ptr<NeighborList> neighbor_list = _get_neighbor_list()) {
+    if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
         const std::size_t size(neighbor_list->size());
         for (std::size_t i(0); i < size; ++i) {
             const Vector3d coord(space.coordinate(i));
@@ -29,7 +29,7 @@ double PairwisePotential::calculate_energy(const Space& space) const {
 vector_list PairwisePotential::calculate_force(const Space& space) const {
     const std::size_t num_beads(space.num_beads());
     vector_list forces(num_beads, Vector3d(0,0,0));
-    if(std::shared_ptr<NeighborList> neighbor_list = _get_neighbor_list()) {
+    if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
         const std::size_t size(neighbor_list->size());
         for (std::size_t i(0); i < size; ++i) {
             const Vector3d coord(space.coordinate(i));
@@ -57,11 +57,11 @@ vector_list PairwisePotential::calculate_force(const Space& space) const {
     return forces;
 }
 
-void PairwisePotential::set_neighbor_list(std::shared_ptr<NeighborList> neighbor_list) {
+void PairwisePotential::set_neighbor_list(std::shared_ptr<PairList> neighbor_list) {
     _neighbor_list = neighbor_list;
 }
 
-std::shared_ptr<NeighborList> PairwisePotential::_get_neighbor_list() const {
+std::shared_ptr<PairList> PairwisePotential::_get_neighbor_list() const {
     return _neighbor_list.lock();
 }
 

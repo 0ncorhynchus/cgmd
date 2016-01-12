@@ -1,15 +1,15 @@
-#ifndef __MY_NEIGHBOR_LIST_HPP
-#define __MY_NEIGHBOR_LIST_HPP
+#ifndef __MY_PAIR_LIST_HPP
+#define __MY_PAIR_LIST_HPP
 
 #include <vector>
 #include <list>
 
-class NeighborList {
+class PairList {
 public:
 
     using iterator = std::list<std::size_t>::iterator;
 
-    NeighborList(std::size_t size);
+    PairList(std::size_t size);
     std::size_t size() const;
     iterator begin(std::size_t i) const;
     iterator end(std::size_t i) const;
