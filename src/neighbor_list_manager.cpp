@@ -19,6 +19,7 @@ void NeighborListManager::update(const Space& space) {
             _neighbor_list->add_pair(*itr);
     }
     _displacements.resize(_displacements.size(), 0.0);
+    _next_time = space.t() + _dt_update;
     _update_flg = false;
 }
 
