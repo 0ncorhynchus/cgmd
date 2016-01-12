@@ -4,6 +4,9 @@ project(LipidModel)
 set(LipidModel_VERSION_MAJOR 0)
 set(LipidModel_VERSION_MINOR 1)
 
+set(CMAKE_CXX_FLAGS -Wall)
+
 add_definitions("-std=c++11")
 add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(samples)
