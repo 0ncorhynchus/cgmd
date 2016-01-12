@@ -8,6 +8,7 @@ public:
     LennardJonesPotential(double sigma, double epsilon);
     virtual double calculate_unit_energy(double distance) const;
     virtual Vector3d calculate_unit_force(const Vector3d& vec) const;
+    virtual double get_cutoff_radius() const;
 
 protected:
     const double _sigma;

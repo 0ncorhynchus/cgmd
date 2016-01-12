@@ -72,3 +72,9 @@ void InterPotential::set_pair(std::string symbol0, std::string symbol1) {
 std::pair<std::string, std::string> InterPotential::get_pair() const {
     return _pair;
 }
+
+bool InterPotential::is_valid_pair(std::string symbol0, std::string symbol1) const {
+    return (_pair.first == "" && _pair.second == "") ||
+        (symbol0 == _pair.first && symbol1 == _pair.second) ||
+        (symbol0 == _pair.second && symbol1 == _pair.first);
+}

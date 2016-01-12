@@ -17,3 +17,7 @@ Vector3d WeeksChandlerAndersonPotential::calculate_unit_force(const Vector3d& ve
         return Vector3d(0,0,0);
     return LennardJonesPotential::calculate_unit_force(vec);
 }
+
+double WeeksChandlerAndersonPotential::get_cutoff_radius() const {
+    return _cutoff_radius;
+}

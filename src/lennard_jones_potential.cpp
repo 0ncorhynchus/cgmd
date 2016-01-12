@@ -1,5 +1,6 @@
 #include "lennard_jones_potential.hpp"
-#include <math.h>
+#include <cmath>
+#include <limits>
 
 LennardJonesPotential::LennardJonesPotential(double sigma, double epsilon) :
     _sigma(sigma), _epsilon(epsilon) {}
@@ -14,4 +15,8 @@ Vector3d LennardJonesPotential::calculate_unit_force(const Vector3d& vec) const 
     const double R6(pow(_sigma/r, 6));
     const double strength(24 * _epsilon / r * R6 * (2*R6 - 1));
     return vec / r * strength;
+}
+
+double LennardJonesPotential::get_cutoff_radius() const {
+    return std::numeric_limits<double>::infinity();
 }
