@@ -4,6 +4,8 @@
 #include <vector>
 #include <list>
 
+using id_pair = std::pair<std::size_t, std::size_t>;
+
 class PairList {
 public:
 
@@ -11,9 +13,10 @@ public:
 
     PairList(std::size_t size);
     std::size_t size() const;
+    void clear();
     iterator begin(std::size_t i) const;
     iterator end(std::size_t i) const;
-    void add_pair(std::size_t i, std::size_t j);
+    void add_pair(const id_pair& pair);
 
 protected:
     std::vector<iterator> _itrs;

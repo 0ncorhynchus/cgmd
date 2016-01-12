@@ -19,13 +19,13 @@ TEST_F(PairListTest, Iterator) {
 }
 
 TEST_F(PairListTest, AddPair) {
-    pair_list.add_pair(2,3);
+    pair_list.add_pair(std::make_pair(2,3));
     EXPECT_EQ(3, *(pair_list.begin(2)));
     EXPECT_EQ(3, *(pair_list.begin(1)));
     EXPECT_EQ(3, *(pair_list.begin(0)));
     EXPECT_NE(pair_list.begin(2), pair_list.end(2));
     EXPECT_EQ(pair_list.end(2), pair_list.begin(3));
-    pair_list.add_pair(2,4);
+    pair_list.add_pair(std::make_pair(2,4));
     EXPECT_EQ(3, *(pair_list.begin(2)));
     EXPECT_EQ(3, *(pair_list.begin(1)));
     EXPECT_EQ(3, *(pair_list.begin(0)));
