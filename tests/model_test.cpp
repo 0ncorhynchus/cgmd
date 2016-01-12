@@ -40,9 +40,6 @@ TEST_F(ModelTest, Potential) {
     bfield->add_bond(0, 1,/* r= */ 0.5, /* k= */ 2.0);
     model.add_potential(bfield);
     EXPECT_EQ(1, model.list_potentials().size());
-    EXPECT_TRUE(model.remove_potential(0));
-    EXPECT_EQ(0, model.list_potentials().size());
-    EXPECT_FALSE(model.remove_potential(0));
 }
 
 }

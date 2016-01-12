@@ -5,11 +5,13 @@
 #include "inter_potential.hpp"
 #include "intra_potential.hpp"
 #include <vector>
+#include <list>
 #include <memory>
 
 class Model {
 public:
-    using potential_container = std::vector<std::shared_ptr<Potential> >;
+    using potential_container = std::list<std::shared_ptr<Potential> >;
+    using iterator = potential_container::iterator;
 
     Model();
     Model(std::size_t size);
@@ -24,16 +26,15 @@ public:
 
     void add_potential(std::shared_ptr<Potential> potential);
     void add_potential(std::shared_ptr<InterPotential> potential);
-    bool remove_potential(const std::size_t& i);
     const potential_container& list_potentials() const;
-
-protected:
-    bool is_in_range(const std::size_t& id) const;
 
 protected:
     double _dt;
     std::vector<std::pair<double, double> > _property_list;
     potential_container _potentials;
+    iterator _bonding_itr;
+    iterator _intra_itr;
+    iterator _inter_itr;
 };
 
 #endif /* __MODEL_HPP */
