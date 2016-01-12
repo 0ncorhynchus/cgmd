@@ -31,6 +31,7 @@ LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,
     _const_term4 = std::vector<double>(num_beads);
     _mass_list = std::vector<double>(num_beads);
 
+    // Initialize Parameters
     for (std::size_t id(0); id < num_beads; ++id) {
         const double friction(_model->get_friction(id));
         const double mass(_model->get_mass(id));
@@ -39,6 +40,49 @@ LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,
         _const_term3[id] = _dt/2*(1-friction*_dt/2);
         _const_term4[id] = _dt*(1-friction*_dt/2);
         _mass_list[id] = mass;
+    }
+
+    PairList bond_pair(num_beads);
+    std::list<std::pair<std::size_t, std::size_t> > bonds(_model->list_bonds());
+    for (auto itr(bonds.begin()); itr != bonds.end(); itr++) {
+        bond_pair.add_pair(*itr);
+        bond_pair.add_pair(std::make_pair((*itr).second, (*itr).first));
+    }
+
+    PairList excludes(num_beads);
+    for (std::size_t i(0); i < num_beads; ++i) {
+        for (auto itr(bond_pair.begin(i)); itr != bond_pair.end(i); ++itr) {
+            excludes.add_pair(std::make_pair(i, *itr));
+            for (auto jtr(bond_pair.begin(*itr)); jtr != bond_pair.end(*itr); ++jtr) {
+                excludes.add_pair(std::make_pair(i, *jtr));
+            }
+        }
+    }
+
+    // Create NeighborListManagers
+    Model::inter_potential_container inter_potentials(_model->list_inter_potentials());
+    for (auto itr(inter_potentials.begin()); itr != inter_potentials.end(); ++itr) {
+        const double r_c((*itr)->get_cutoff_radius());
+        NeighborListManager manager(num_beads, r_c, r_c*3, _dt*20); // TODO parameter fitting
+        (*itr)->set_neighbor_list(manager.get_neighbor_list());
+        for (std::size_t i(0); i < num_beads-1; ++i) {
+            std::string symbol0(_space->symbol(i));
+            for (std::size_t j(i+1); j < num_beads; j++) {
+                std::string symbol1(_space->symbol(j));
+                if ((*itr)->is_valid_pair(symbol0, symbol1)) {
+                    bool is_exclude(false);
+                    for (auto itr2(excludes.begin(i)); itr2 != excludes.end(i); ++itr2)
+                        if (j == *itr2) {
+                            is_exclude = true;
+                            break;
+                        }
+                    if (!is_exclude)
+                        manager.add_candidate(std::make_pair(i,j));
+                }
+            }
+        }
+        manager.update(*(_space.get()));
+        _neighbor_list_managers.push_back(manager);
     }
 }
 
@@ -62,12 +106,8 @@ void LangevinStepper::step() {
     }
 
     // Update Force
-    vector_list force_list(num_beads, Vector3d(0,0,0));
-    const Model::potential_container& potentials(_model->list_potentials());
-    for (auto itr(potentials.begin()); itr != potentials.end(); ++itr)
-        force_list += (*itr)->calculate_force(*(_space.get()));
-
     vector_list new_acceleration(num_beads, Vector3d(0,0,0));
+    const vector_list force_list(_model->calculate_force(*(_space.get())));
     for (std::size_t i(0); i < num_beads; ++i) {
         new_acceleration[i] = force_list.at(i) / _mass_list.at(i)
             + get_unit_random_force() * _deviation.at(i);
