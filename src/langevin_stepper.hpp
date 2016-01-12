@@ -4,6 +4,7 @@
 #include <random>
 #include "space.hpp"
 #include "model.hpp"
+#include "neighbor_list_manager.hpp"
 
 class Stepper {
 public:
@@ -30,6 +31,8 @@ protected:
     std::shared_ptr<Model> _model;
     std::normal_distribution<> _dist;
     std::mt19937 _gen;
+    std::list<NeighborListManager> _neighbor_list_managers;
+
     const double _dt;
     const double _T;
     vector_list _acceleration_list;

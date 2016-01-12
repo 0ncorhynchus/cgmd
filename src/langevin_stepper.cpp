@@ -46,9 +46,20 @@ void LangevinStepper::step() {
     const std::size_t num_beads(_space->num_beads());
 
     // Update Coordinate
-    for (std::size_t i(0); i < num_beads; ++i)
-        _space->coordinate(i) += _space->velocity(i) * _const_term4.at(i)
-            + _acceleration_list.at(i) * _dt*_dt/2;
+    std::list<double> displacements;
+    for (std::size_t i(0); i < num_beads; ++i) {
+        const Vector3d move(_space->velocity(i) * _const_term4.at(i)
+                + _acceleration_list.at(i) * _dt*_dt/2);
+        _space->coordinate(i) += move;
+        displacements.push_back(norm(move));
+    }
+
+    // Update NeighborList
+    for (auto itr(_neighbor_list_managers.begin()); itr != _neighbor_list_managers.end(); ++itr) {
+        (*itr).add_displacements(displacements);
+        if ((*itr).to_update(_space->t()))
+            (*itr).update(*(_space.get()));
+    }
 
     // Update Force
     vector_list force_list(num_beads, Vector3d(0,0,0));

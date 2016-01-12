@@ -1,11 +1,13 @@
 #include "neighbor_list_manager.hpp"
 #include <algorithm>
 
-NeighborListManager::NeighborListManager(std::size_t num_beads, double r_c, double r_l) :
+NeighborListManager::NeighborListManager(std::size_t num_beads, double r_c, double r_l, double dt) :
         _threshold_radius(r_l - r_c),
         _list_radius(r_l),
+        _dt_update(dt),
         _neighbor_list(std::make_shared<PairList>(num_beads-1)),
         _displacements(num_beads, 0.0) {
+    _next_time = _dt_update;
     _update_flg = false;
 }
 
@@ -20,8 +22,8 @@ void NeighborListManager::update(const Space& space) {
     _update_flg = false;
 }
 
-bool NeighborListManager::to_update() const {
-    return _update_flg;
+bool NeighborListManager::to_update(double t) const {
+    return t >= _next_time || _update_flg;
 }
 
 void NeighborListManager::add_candidate(const id_pair& candidate) {

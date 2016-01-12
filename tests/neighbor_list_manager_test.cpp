@@ -5,7 +5,7 @@ namespace {
 
 class NeighborListManagerTest : public ::testing::Test {
 protected:
-    NeighborListManagerTest() : manager(10, 0.5, 1.5) {}
+    NeighborListManagerTest() : manager(10, 0.5, 1.5, 1.0e-3) {}
 
     // virtual void SetUp() {}
     // virtual void TearDown() {}
@@ -16,14 +16,15 @@ protected:
 TEST_F(NeighborListManagerTest, Constructor) {}
 
 TEST_F(NeighborListManagerTest, UpdateFlag) {
-    EXPECT_EQ(false, manager.to_update());
+    EXPECT_EQ(true, manager.to_update(1.0e-3));
+    EXPECT_EQ(false, manager.to_update(0.0));
     std::list<double> displacements(10, 0.0);
     auto itr(displacements.begin());
     *itr = 0.4;
     ++itr;
     *itr = 0.61;
     manager.add_displacements(displacements);
-    EXPECT_EQ(true, manager.to_update());
+    EXPECT_EQ(true, manager.to_update(0.0));
 }
 
 TEST_F(NeighborListManagerTest, Update) {
