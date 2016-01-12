@@ -11,8 +11,8 @@ class LangevinStepperTest : public ::testing::Test {
 protected:
     LangevinStepperTest() :
         rnd(), gen(rnd()),
-        space(new Space()),
         model(new Model()),
+        space(new Space()),
         stepper(space, model, gen, /* dt= */0.2, /* T= */200) {
     }
 
