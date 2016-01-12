@@ -2,7 +2,8 @@
 #define __MODEL_HPP
 
 #include "potential.hpp"
-#include "pairwise_potential.hpp"
+#include "inter_potential.hpp"
+#include "intra_potential.hpp"
 #include <vector>
 #include <memory>
 
@@ -22,7 +23,7 @@ public:
     double calculate_energy(std::shared_ptr<Space> space) const;
 
     void add_potential(std::shared_ptr<Potential> potential);
-    void add_potential(std::shared_ptr<PairwisePotential> potential);
+    void add_potential(std::shared_ptr<InterPotential> potential);
     bool remove_potential(const std::size_t& i);
     const potential_container& list_potentials() const;
 

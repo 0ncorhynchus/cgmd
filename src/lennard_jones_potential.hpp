@@ -1,9 +1,9 @@
 #ifndef __LENNARD_JONES_POTENTIAL_HPP
 #define __LENNARD_JONES_POTENTIAL_HPP
 
-#include "pairwise_potential.hpp"
+#include "inter_potential.hpp"
 
-class LennardJonesPotential : public PairwisePotential {
+class LennardJonesPotential : public InterPotential {
 public:
     LennardJonesPotential(double sigma, double epsilon);
     virtual double calculate_unit_energy(double distance) const;

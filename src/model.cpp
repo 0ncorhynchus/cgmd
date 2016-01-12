@@ -43,7 +43,7 @@ void Model::add_potential(std::shared_ptr<Potential> potential) {
     _potentials.push_back(potential);
 }
 
-void Model::add_potential(std::shared_ptr<PairwisePotential> potential) {
+void Model::add_potential(std::shared_ptr<InterPotential> potential) {
     //_potentials.push_back(potential); TODO
 }
 

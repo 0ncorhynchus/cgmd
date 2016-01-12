@@ -1,6 +1,6 @@
-#include "pairwise_potential.hpp"
+#include "inter_potential.hpp"
 
-double PairwisePotential::calculate_energy(const Space& space) const {
+double InterPotential::calculate_energy(const Space& space) const {
     double energy(0);
     if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
         const std::size_t size(neighbor_list->size());
@@ -26,7 +26,7 @@ double PairwisePotential::calculate_energy(const Space& space) const {
     return energy;
 }
 
-vector_list PairwisePotential::calculate_force(const Space& space) const {
+vector_list InterPotential::calculate_force(const Space& space) const {
     const std::size_t num_beads(space.num_beads());
     vector_list forces(num_beads, Vector3d(0,0,0));
     if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
@@ -57,18 +57,18 @@ vector_list PairwisePotential::calculate_force(const Space& space) const {
     return forces;
 }
 
-void PairwisePotential::set_neighbor_list(std::shared_ptr<PairList> neighbor_list) {
+void InterPotential::set_neighbor_list(std::shared_ptr<PairList> neighbor_list) {
     _neighbor_list = neighbor_list;
 }
 
-std::shared_ptr<PairList> PairwisePotential::_get_neighbor_list() const {
+std::shared_ptr<PairList> InterPotential::_get_neighbor_list() const {
     return _neighbor_list.lock();
 }
 
-void PairwisePotential::set_pair(std::string symbol0, std::string symbol1) {
+void InterPotential::set_pair(std::string symbol0, std::string symbol1) {
     _pair = std::make_pair(symbol0, symbol1);
 }
 
-std::pair<std::string, std::string> PairwisePotential::get_pair() const {
+std::pair<std::string, std::string> InterPotential::get_pair() const {
     return _pair;
 }
