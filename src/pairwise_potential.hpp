@@ -1,13 +1,13 @@
 #ifndef __PAIRWISE_POTENTIAL_HPP
 #define __PAIRWISE_POTENTIAL_HPP
 
-#include "potential.hpp"
+#include "inter_potential.hpp"
 #include "neighbor_list.hpp"
 #include <memory>
 #include <string>
 #include <map>
 
-class PairwisePotential : public Potential{
+class PairwisePotential : public InterPotential{
 public:
     double calculate_energy(const Space& space) const;
     vector_list calculate_force(const Space& space) const;
