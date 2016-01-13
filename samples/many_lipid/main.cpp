@@ -10,12 +10,12 @@
 using namespace cgmd;
 
 int main() {
-    std::shared_ptr<Space> space(std::make_shared<Space>());
+    std::shared_ptr<Space> space(new Space());
     SpaceXYZReader reader("initial_structure.xyz");
     reader.load(*(space.get()));
 
     const std::size_t num_lipid(9);
-    std::shared_ptr<Model> model(std::make_shared<Model>(num_lipid * 3));
+    std::shared_ptr<Model> model(new Model(num_lipid * 3));
     for (std::size_t i(0); i < num_lipid * 3; ++i)
         model->set_property(i, 1.0e-10, 0.2);
 
@@ -23,7 +23,7 @@ int main() {
     const double sigma(1.0e-10);
 
     std::shared_ptr<FENEBondPotential> head_tail_bond(
-            std::make_shared<FENEBondPotential>(
+            new FENEBondPotential(
                 /* r0= */1.5*sigma,
                 /* k = */30*epsilon/sigma/sigma,
                 /* b = */0.95*sigma,
@@ -33,7 +33,7 @@ int main() {
     model->add_potential(head_tail_bond);
 
     std::shared_ptr<FENEBondPotential> tail_tail_bond(
-            std::make_shared<FENEBondPotential>(
+            new FENEBondPotential(
                 /* r0= */1.5*sigma,
                 /* k = */30*epsilon/sigma/sigma,
                 /* b = */sigma,
@@ -43,7 +43,7 @@ int main() {
     model->add_potential(tail_tail_bond);
 
     std::shared_ptr<LowestOrderHarmonicBendPotential> bend(
-            std::make_shared<LowestOrderHarmonicBendPotential>(
+            new LowestOrderHarmonicBendPotential(
                 /* r0= */4*sigma,
                 /* k = */10*epsilon/sigma/sigma));
     for (std::size_t i(0); i < num_lipid; ++i)
@@ -51,28 +51,28 @@ int main() {
     model->add_potential(bend);
 
     std::shared_ptr<WeeksChandlerAndersonPotential> head_head_replusion(
-            std::make_shared<WeeksChandlerAndersonPotential>(
+            new WeeksChandlerAndersonPotential(
                 /* s= */0.95*sigma,
                 /* e= */epsilon));
     head_head_replusion->set_pair("LH", "LH");
     model->add_potential(head_head_replusion);
 
     std::shared_ptr<WeeksChandlerAndersonPotential> head_tail_replusion(
-            std::make_shared<WeeksChandlerAndersonPotential>(
+            new WeeksChandlerAndersonPotential(
                 /* s= */0.95*sigma,
                 /* e= */epsilon));
     head_tail_replusion->set_pair("LH", "LT");
     model->add_potential(head_tail_replusion);
 
     std::shared_ptr<WeeksChandlerAndersonPotential> tail_tail_replusion(
-            std::make_shared<WeeksChandlerAndersonPotential>(
+            new WeeksChandlerAndersonPotential(
                 /* s= */sigma,
                 /* e= */epsilon));
     tail_tail_replusion->set_pair("LT", "LT");
     model->add_potential(tail_tail_replusion);
 
     std::shared_ptr<TailsAttractionPotential> tails_attraction(
-            std::make_shared<TailsAttractionPotential>(
+            new TailsAttractionPotential(
                 /* r_c= */pow(2,1.0/6.0)*sigma,
                 /* w_c= */0.8*sigma,
                 /* e =  */epsilon));

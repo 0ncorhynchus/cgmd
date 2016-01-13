@@ -8,12 +8,12 @@
 using namespace cgmd;
 
 int main() {
-    std::shared_ptr<Space> space(std::make_shared<Space>());
+    std::shared_ptr<Space> space(new Space());
     SpaceXYZReader reader("initial_structure.xyz");
     reader.load(*(space.get()));
 
     const std::size_t num_beads(space->num_beads());
-    std::shared_ptr<Model> model(std::make_shared<Model>(num_beads));
+    std::shared_ptr<Model> model(new Model(num_beads));
     model->set_property(0, 1.0e-10, 0.2);
     model->set_property(1, 1.0e-10, 0.2);
     model->set_property(2, 1.0e-10, 0.2);
@@ -22,7 +22,7 @@ int main() {
     const double sigma(1.0e-10);
 
     std::shared_ptr<FENEBondPotential> head_tail_bond(
-            std::make_shared<FENEBondPotential>(
+            new FENEBondPotential(
                 /* r0= */1.5*sigma,
                 /* k = */30*epsilon/sigma/sigma,
                 /* b = */0.95*sigma,
@@ -31,7 +31,7 @@ int main() {
     model->add_potential(head_tail_bond);
 
     std::shared_ptr<FENEBondPotential> tail_tail_bond(
-            std::make_shared<FENEBondPotential>(
+            new FENEBondPotential(
                 /* r0= */1.5*sigma,
                 /* k = */30*epsilon/sigma/sigma,
                 /* b = */sigma,
@@ -40,7 +40,7 @@ int main() {
     model->add_potential(tail_tail_bond);
 
     std::shared_ptr<LowestOrderHarmonicBendPotential> bend(
-            std::make_shared<LowestOrderHarmonicBendPotential>(
+            new LowestOrderHarmonicBendPotential(
                 /* r0= */4*sigma,
                 /* k = */10*epsilon/sigma/sigma));
     bend->add_pair(std::make_pair(0,2));
