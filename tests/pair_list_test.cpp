@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "pair_list.hpp"
+#include <cgmd/pair_list.hpp>
 
 using namespace cgmd;
 

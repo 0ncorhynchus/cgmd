@@ -1,9 +1,9 @@
-#include <space.hpp>
-#include <model.hpp>
-#include <langevin_stepper.hpp>
-#include <space_xyz_io.hpp>
-#include <potential/fene_bond_potential.hpp>
-#include <potential/lowest_order_harmonic_bend_potential.hpp>
+#include <cgmd/space.hpp>
+#include <cgmd/model.hpp>
+#include <cgmd/langevin_stepper.hpp>
+#include <cgmd/space_xyz_io.hpp>
+#include <cgmd/potential/fene_bond_potential.hpp>
+#include <cgmd/potential/lowest_order_harmonic_bend_potential.hpp>
 
 using namespace cgmd;
 

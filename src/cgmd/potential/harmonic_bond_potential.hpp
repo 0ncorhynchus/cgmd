@@ -1,7 +1,7 @@
 #ifndef __HARMONIC_BOND_POTENTIAL_HPP
 #define __HARMONIC_BOND_POTENTIAL_HPP
 
-#include "potential.hpp"
+#include <cgmd/potential.hpp>
 #include <map>
 
 namespace cgmd {

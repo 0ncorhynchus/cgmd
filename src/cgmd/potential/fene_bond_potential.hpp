@@ -1,7 +1,7 @@
 #ifndef __FENE_BOND_POTENTIAL_HPP
 #define __FENE_BOND_POTENTIAL_HPP
 
-#include "potential.hpp"
+#include <cgmd/potential.hpp>
 #include "weeks_chandler_anderson_potential.hpp"
 
 namespace cgmd {

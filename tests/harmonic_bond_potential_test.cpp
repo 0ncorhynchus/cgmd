@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
-#include "space.hpp"
-#include "potential/harmonic_bond_potential.hpp"
+#include <cgmd/space.hpp>
+#include <cgmd/potential/harmonic_bond_potential.hpp>
 
 using namespace cgmd;
 

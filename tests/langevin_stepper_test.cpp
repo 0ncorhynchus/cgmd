@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <memory>
 #include <random>
-#include "space.hpp"
-#include "model.hpp"
-#include "langevin_stepper.hpp"
+#include <cgmd/space.hpp>
+#include <cgmd/model.hpp>
+#include <cgmd/langevin_stepper.hpp>
 
 using namespace cgmd;
 

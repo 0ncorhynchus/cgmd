@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "neighbor_list_manager.hpp"
+#include <cgmd/neighbor_list_manager.hpp>
 
 using namespace cgmd;
 

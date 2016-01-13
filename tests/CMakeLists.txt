@@ -1,15 +1,18 @@
 set(TEST_NAMES
-    vector3d_test space_test model_test space_io_test
-    langevin_stepper_test pair_list_test neighbor_list_manager_test
-    harmonic_bond_potential_test lennard_jones_potential_test
+    vector3d_test
+    space_test
+    model_test
+    space_io_test
+    langevin_stepper_test
+    pair_list_test
+    neighbor_list_manager_test
+    harmonic_bond_potential_test
+    lennard_jones_potential_test
     )
 
 find_package(GTest REQUIRED)
 
-include_directories(
-    ${GTEST_INCLUDE_DIRS}
-    ../src
-)
+include_directories(${GTEST_INCLUDE_DIRS})
 set(test_libraries
     pthread
     ${GTEST_BOTH_LIBRARIES}

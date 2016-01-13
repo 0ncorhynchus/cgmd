@@ -1,7 +1,7 @@
 #ifndef __LOWEST_ORDER_HARMONIC_BEND_POTENTIAL_HPP
 #define __LOWEST_ORDER_HARMONIC_BEND_POTENTIAL_HPP
 
-#include "potential.hpp"
+#include <cgmd/potential.hpp>
 #include <list>
 
 namespace cgmd {

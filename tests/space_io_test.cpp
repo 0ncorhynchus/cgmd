@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "space_io.hpp"
-#include "space_xyz_io.hpp"
+#include <cgmd/space_io.hpp>
+#include <cgmd/space_xyz_io.hpp>
 
 using namespace cgmd;
 

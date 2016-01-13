@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "space.hpp"
+#include <cgmd/space.hpp>
 
 using namespace cgmd;
 

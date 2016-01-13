@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <cmath>
-#include "vector3d.hpp"
+#include <cgmd/vector3d.hpp>
 
 using namespace cgmd;
 

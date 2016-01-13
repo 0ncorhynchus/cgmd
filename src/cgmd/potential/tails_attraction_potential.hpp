@@ -1,7 +1,7 @@
 #ifndef __TAILS_ATTRACTION_POTENTIAL_HPP
 #define __TAILS_ATTRACTION_POTENTIAL_HPP
 
-#include "potential.hpp"
+#include <cgmd/potential.hpp>
 
 namespace cgmd {
 
