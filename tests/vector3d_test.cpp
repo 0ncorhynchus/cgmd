@@ -79,7 +79,7 @@ TEST(Vector3dListTest, Minus) {
     expected.push_back(Vector3d(0,-2,1));
     EXPECT_EQ(expected, x - y);
     x -= y;
-    //EXPECT_EQ(expected, x);
+    EXPECT_EQ(expected, x);
 }
 
 }

@@ -32,6 +32,9 @@ double Model::calculate_energy(const Space& space) const {
     for (auto itr(_bond_potentials.begin()); itr != _bond_potentials.end(); ++itr) {
         energy += (*itr)->calculate_energy(space);
     }
+    for (auto itr(_inter_potentials.begin()); itr != _inter_potentials.end(); ++itr) {
+        energy += (*itr)->calculate_energy(space);
+    }
     for (auto itr(_potentials.begin()); itr != _potentials.end(); ++itr) {
         energy += (*itr)->calculate_energy(space);
     }
@@ -41,6 +44,9 @@ double Model::calculate_energy(const Space& space) const {
 vector_list Model::calculate_force(const Space& space) const {
     vector_list forces(space.num_beads(), Vector3d(0,0,0));
     for (auto itr(_bond_potentials.begin()); itr != _bond_potentials.end(); ++itr) {
+        forces += (*itr)->calculate_force(space);
+    }
+    for (auto itr(_inter_potentials.begin()); itr != _inter_potentials.end(); ++itr) {
         forces += (*itr)->calculate_force(space);
     }
     for (auto itr(_potentials.begin()); itr != _potentials.end(); ++itr) {

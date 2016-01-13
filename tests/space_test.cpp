@@ -32,6 +32,12 @@ TEST_F(SpaceTest, NumBeads) {
     EXPECT_EQ(15, space.num_beads());
 }
 
+TEST_F(SpaceTest, Reset) {
+    ASSERT_EQ(15, space.num_beads());
+    space.reset(10);
+    EXPECT_EQ(10, space.num_beads());
+}
+
 TEST_F(SpaceTest, Time) {
     EXPECT_EQ(0, space.t());
     space.set_t(0.2);
