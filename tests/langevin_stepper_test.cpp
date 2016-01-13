@@ -33,9 +33,6 @@ TEST_F(LangevinStepperTest, Step) {
     EXPECT_EQ(0.2, space->t());
 }
 
-TEST_F(LangevinStepperTest, Neighbor) {
-}
-
 }
 
 int main(int argc, char **argv) {
