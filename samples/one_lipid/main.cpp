@@ -2,8 +2,8 @@
 #include <model.hpp>
 #include <langevin_stepper.hpp>
 #include <space_xyz_io.hpp>
-#include <fene_bond_potential.hpp>
-#include <lowest_order_harmonic_bend_potential.hpp>
+#include <potential/fene_bond_potential.hpp>
+#include <potential/lowest_order_harmonic_bend_potential.hpp>
 
 using namespace cgmd;
 

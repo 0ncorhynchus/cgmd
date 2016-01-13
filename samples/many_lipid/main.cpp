@@ -2,10 +2,10 @@
 #include <model.hpp>
 #include <langevin_stepper.hpp>
 #include <space_xyz_io.hpp>
-#include <fene_bond_potential.hpp>
-#include <lowest_order_harmonic_bend_potential.hpp>
-#include <weeks_chandler_anderson_potential.hpp>
-#include <tails_attraction_potential.hpp>
+#include <potential/fene_bond_potential.hpp>
+#include <potential/lowest_order_harmonic_bend_potential.hpp>
+#include <potential/weeks_chandler_anderson_potential.hpp>
+#include <potential/tails_attraction_potential.hpp>
 
 using namespace cgmd;
 

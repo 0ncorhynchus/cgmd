@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <memory>
-#include "harmonic_bond_potential.hpp"
 #include "model.hpp"
+#include "potential/harmonic_bond_potential.hpp"
 
 using namespace cgmd;
 

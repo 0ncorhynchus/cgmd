@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
 #include "space.hpp"
-#include "lennard_jones_potential.hpp"
+#include "potential/lennard_jones_potential.hpp"
 
 using namespace cgmd;
 
