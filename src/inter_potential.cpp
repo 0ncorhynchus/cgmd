@@ -1,4 +1,4 @@
-#include "inter_potential.hpp"
+#include "potential.hpp"
 
 namespace cgmd {
 

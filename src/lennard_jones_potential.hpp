@@ -1,7 +1,7 @@
 #ifndef __LENNARD_JONES_POTENTIAL_HPP
 #define __LENNARD_JONES_POTENTIAL_HPP
 
-#include "inter_potential.hpp"
+#include "potential.hpp"
 
 namespace cgmd {
 

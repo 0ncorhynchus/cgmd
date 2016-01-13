@@ -2,8 +2,6 @@
 #define __MODEL_HPP
 
 #include "potential.hpp"
-#include "bond_potential.hpp"
-#include "inter_potential.hpp"
 #include <vector>
 #include <list>
 #include <memory>
