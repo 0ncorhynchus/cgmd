@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.6)
 enable_testing()
-project(LipidModel)
-set(LipidModel_VERSION_MAJOR 0)
-set(LipidModel_VERSION_MINOR 1)
+project(cgmd)
+set(CGMD_VERSION_MAJOR 0)
+set(CGMD_VERSION_MINOR 1)
 
 set(CMAKE_CXX_FLAGS -Wall)
 
