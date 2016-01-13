@@ -14,12 +14,12 @@ int main() {
     SpaceXYZReader reader("initial_structure.xyz");
     reader.load(*(space.get()));
 
-    const std::size_t num_lipid(9);
+    const std::size_t num_lipid(100);
     std::shared_ptr<Model> model(new Model(num_lipid * 3));
     for (std::size_t i(0); i < num_lipid * 3; ++i)
         model->set_property(i, 1.0e-10, 0.2);
 
-    const double epsilon(1.0e-20);
+    const double epsilon(5.0e-20);
     const double sigma(1.0e-10);
 
     std::shared_ptr<FENEBondPotential> head_tail_bond(
@@ -84,7 +84,7 @@ int main() {
     LangevinStepper stepper(space, model, gen, /* dt= */1.0e-9, /* T= */300);
 
     SpaceXYZWriter writer("result_structure.xyz");
-    for (int step(0); step <= 1000000; ++step) {
+    for (int step(0); step <= 100000; ++step) {
         if (step % 500 == 0)
             writer.save(*(space.get()));
         stepper.step();
