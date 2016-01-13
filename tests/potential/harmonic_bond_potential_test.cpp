@@ -12,11 +12,16 @@ protected:
     virtual void SetUp() {
         potential.add_bond(0,1,/* r= */0.5,/* k= */2.0);
         potential.add_bond(0,2,/* r= */0.6,/* k= */2.5);
+
+        space.reset(2);
+        space.coordinate(0) = Vector3d(0.0, 0.0, 0.0);
+        space.coordinate(1) = Vector3d(2.0, 0.0, 0.0);
     }
 
     // virtual void TearDown() {}
 
     HarmonicBondPotential potential;
+    Space space;
 };
 
 TEST_F(HarmonicBondPotentialTest, AddBond) {
@@ -47,23 +52,23 @@ TEST_F(HarmonicBondPotentialTest, K) {
 }
 
 TEST_F(HarmonicBondPotentialTest, CalculateEnergy) {
-    Space space(2);
-    space.coordinate(0) = Vector3d(0,0,0);
-    space.coordinate(1) = Vector3d(2,0,0);
-
     EXPECT_EQ(2.0*pow(2-0.5,2), potential.calculate_energy(space));
 }
 
-TEST_F(HarmonicBondPotentialTest, CalculateForce) {
-    Space space(2);
-    space.coordinate(0) = Vector3d(0,0,0);
-    space.coordinate(1) = Vector3d(2,0,0);
+TEST_F(HarmonicBondPotentialTest, Validation) {
+    vector_list perturbation(2);
+    perturbation.at(0) = Vector3d(0, 0, 1.0e-4);
+    perturbation.at(1) = Vector3d(0, 1.0e-4, 0);
 
-    const double strength(2.0*2.0*(2-0.5));
-    vector_list expected(2);
-    expected.at(0) = Vector3d(1,0,0) * strength;
-    expected.at(1) = expected.at(0) * (-1);
-    EXPECT_EQ(expected, potential.calculate_force(space));
+    vector_list forces(potential.calculate_force(space));
+    double energy(potential.calculate_energy(space));
+    energy += dot(forces.at(0), perturbation.at(0));
+    energy += dot(forces.at(1), perturbation.at(1));
+
+    space.coordinate(0) += perturbation.at(0);
+    space.coordinate(1) += perturbation.at(1);
+
+    EXPECT_NEAR(energy, potential.calculate_energy(space), 5.0e-7);
 }
 
 }

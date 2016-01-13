@@ -1,6 +1,10 @@
 set(TEST_NAMES
+    fene_bond_potential_test
     harmonic_bond_potential_test
     lennard_jones_potential_test
+    lowest_order_harmonic_bend_potential_test
+    tails_attraction_potential_test
+    weeks_chandler_anderson_potential_test
     )
 
 find_package(GTest REQUIRED)

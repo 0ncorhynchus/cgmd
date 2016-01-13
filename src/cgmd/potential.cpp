@@ -23,8 +23,6 @@ double InterPotential::calculate_energy(const Space& space) const {
         const std::size_t num_beads(space.num_beads());
         for (std::size_t i(0); i < num_beads-1; ++i) {
             const std::string symbol0(space.symbol(i));
-            if (symbol0 != _pair.first && symbol0 != _pair.second)
-                continue;
             const Vector3d coord(space.coordinate(i));
             for (std::size_t j(i+1); j < num_beads; ++j) {
                 if (is_valid_pair(symbol0, space.symbol(j)))
