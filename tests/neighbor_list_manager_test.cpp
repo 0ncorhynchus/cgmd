@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "neighbor_list_manager.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 class NeighborListManagerTest : public ::testing::Test {

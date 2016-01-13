@@ -1,5 +1,7 @@
 #include "space.hpp"
 
+namespace cgmd {
+
 Space::Space() {}
 
 Space::Space(const std::size_t& size) {
@@ -41,3 +43,5 @@ Vector3d& Space::velocity(std::size_t index) {
 const Vector3d& Space::velocity(std::size_t index) const {
     return _velocities.at(index);
 }
+
+} // cgmd

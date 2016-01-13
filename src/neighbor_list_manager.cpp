@@ -1,6 +1,8 @@
 #include "neighbor_list_manager.hpp"
 #include <algorithm>
 
+namespace cgmd {
+
 NeighborListManager::NeighborListManager(std::size_t num_beads, double r_c, double r_l, double dt) :
         _threshold_radius(r_l - r_c),
         _list_radius(r_l),
@@ -57,3 +59,5 @@ void NeighborListManager::add_displacements(const std::list<double>& displacemen
 std::shared_ptr<PairList> NeighborListManager::get_neighbor_list() {
     return _neighbor_list;
 }
+
+} // cgmd

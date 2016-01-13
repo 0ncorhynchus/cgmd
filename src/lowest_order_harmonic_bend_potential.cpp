@@ -1,6 +1,8 @@
 #include "lowest_order_harmonic_bend_potential.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 LowestOrderHarmonicBendPotential::LowestOrderHarmonicBendPotential(double r0, double k) :
         _r0(r0), _k(k) {
 }
@@ -33,3 +35,5 @@ vector_list LowestOrderHarmonicBendPotential::calculate_force(const Space& space
     }
     return forces;
 }
+
+} // cgmd

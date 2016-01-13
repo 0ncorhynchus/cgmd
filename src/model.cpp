@@ -1,5 +1,7 @@
 #include "model.hpp"
 
+namespace cgmd {
+
 Model::Model() {}
 
 Model::Model(std::size_t size) {
@@ -74,3 +76,5 @@ std::list<std::pair<std::size_t, std::size_t> > Model::list_bonds() const {
 Model::inter_potential_container& Model::list_inter_potentials() {
     return _inter_potentials;
 }
+
+} // cgmd

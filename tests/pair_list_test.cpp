@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "pair_list.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 class PairListTest : public ::testing::Test {

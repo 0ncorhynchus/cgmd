@@ -2,6 +2,8 @@
 #include <cmath>
 #include "vector3d.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 TEST(Vector3dTest, Plus) {

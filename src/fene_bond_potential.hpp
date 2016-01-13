@@ -4,6 +4,8 @@
 #include "bond_potential.hpp"
 #include "weeks_chandler_anderson_potential.hpp"
 
+namespace cgmd {
+
 class FENEBondPotential : public BondPotential {
 public:
     FENEBondPotential(double r0, double k, double sigma, double epsilon);
@@ -17,5 +19,7 @@ protected:
     WeeksChandlerAndersonPotential _weeks_chandler_anderson;
     std::list<std::pair<std::size_t, std::size_t> > _bonds;
 };
+
+} // cgmd
 
 #endif /* __FENE_BOND_POTENTIAL_HPP */

@@ -8,6 +8,8 @@
 #include <memory>
 #include <list>
 
+namespace cgmd {
+
 /*
  * The instance of this will be initialized by Stepper
  */
@@ -31,5 +33,7 @@ protected:
     std::list<id_pair> _candidates;
     bool _update_flg;
 };
+
+} // cgmd
 
 #endif /* __NEIGHBOR_LIST_MANAGER_HPP */

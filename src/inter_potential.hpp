@@ -7,6 +7,8 @@
 #include <string>
 #include <map>
 
+namespace cgmd {
+
 /*
  * This class is for pairwise potentials
  */
@@ -33,5 +35,7 @@ protected:
     std::weak_ptr<PairList> _neighbor_list;
     std::pair<std::string, std::string> _pair;
 };
+
+} // cgmd
 
 #endif /* __PAIRWISE_POTENTIAL_HPP */

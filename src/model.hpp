@@ -8,6 +8,8 @@
 #include <list>
 #include <memory>
 
+namespace cgmd {
+
 class Model {
 public:
     using potential_container = std::list<std::shared_ptr<Potential> >;
@@ -36,5 +38,7 @@ protected:
     inter_potential_container _inter_potentials;
     potential_container _potentials;
 };
+
+} // cgmd
 
 #endif /* __MODEL_HPP */

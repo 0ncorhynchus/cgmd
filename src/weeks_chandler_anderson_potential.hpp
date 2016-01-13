@@ -3,6 +3,8 @@
 
 #include "lennard_jones_potential.hpp"
 
+namespace cgmd {
+
 class WeeksChandlerAndersonPotential : public LennardJonesPotential {
 public:
     WeeksChandlerAndersonPotential(double sigma, double epsilon);
@@ -13,5 +15,7 @@ public:
 protected:
     const double _cutoff_radius;
 };
+
+} // cgmd
 
 #endif /* __WEEKS_CHANDLER_ANDERSON_POTENTIAL_HPP */

@@ -1,5 +1,7 @@
 #include "potential.hpp"
 
+namespace cgmd {
+
 std::pair<std::size_t, std::size_t> make_sorted_pair(
     const std::size_t& id0, const std::size_t& id1) {
     if (id0 < id1)
@@ -7,3 +9,4 @@ std::pair<std::size_t, std::size_t> make_sorted_pair(
     return std::make_pair(id1, id0);
 }
 
+} // cgmd

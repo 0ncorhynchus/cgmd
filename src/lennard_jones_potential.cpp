@@ -2,6 +2,8 @@
 #include <cmath>
 #include <limits>
 
+namespace cgmd {
+
 LennardJonesPotential::LennardJonesPotential(double sigma, double epsilon) :
     _sigma(sigma), _epsilon(epsilon) {}
 
@@ -20,3 +22,5 @@ Vector3d LennardJonesPotential::calculate_unit_force(const Vector3d& vec) const 
 double LennardJonesPotential::get_cutoff_radius() const {
     return std::numeric_limits<double>::infinity();
 }
+
+} // cgmd

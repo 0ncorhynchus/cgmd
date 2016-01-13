@@ -9,6 +9,8 @@
  * The unit is angstrom.
  */
 
+namespace cgmd {
+
 SpaceXYZWriter::SpaceXYZWriter(const std::string& fname) : _fname(fname) {
     std::ofstream ofs(_fname);
 }
@@ -65,3 +67,5 @@ void SpaceXYZReader::load(Space& space) const {
         ++id;
     }
 }
+
+} // cgmd

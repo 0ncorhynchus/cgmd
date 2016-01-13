@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
 #include "space.hpp"
 
+using namespace cgmd;
+
+namespace {
+
 class SpaceTest : public ::testing::Test {
 protected:
     virtual void SetUp() {
@@ -49,6 +53,8 @@ TEST_F(SpaceTest, Veclotities) {
     EXPECT_EQ(Vector3d(0,0,0), space.velocity(11));
     space.velocity(11) = Vector3d(1,1,1);
     EXPECT_EQ(Vector3d(1,1,1), space.velocity(11));
+}
+
 }
 
 int main(int argc, char **argv) {

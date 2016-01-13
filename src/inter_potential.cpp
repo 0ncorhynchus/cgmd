@@ -1,5 +1,7 @@
 #include "inter_potential.hpp"
 
+namespace cgmd {
+
 double InterPotential::calculate_energy(const Space& space) const {
     double energy(0);
     if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
@@ -78,3 +80,5 @@ bool InterPotential::is_valid_pair(std::string symbol0, std::string symbol1) con
         (symbol0 == _pair.first && symbol1 == _pair.second) ||
         (symbol0 == _pair.second && symbol1 == _pair.first);
 }
+
+} // cgmd

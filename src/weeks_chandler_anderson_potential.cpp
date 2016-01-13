@@ -1,6 +1,8 @@
 #include "weeks_chandler_anderson_potential.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 WeeksChandlerAndersonPotential::WeeksChandlerAndersonPotential(double sigma, double epsilon) :
         LennardJonesPotential(sigma, epsilon),
         _cutoff_radius(pow(2,1.0/6.0)*sigma) {
@@ -21,3 +23,5 @@ Vector3d WeeksChandlerAndersonPotential::calculate_unit_force(const Vector3d& ve
 double WeeksChandlerAndersonPotential::get_cutoff_radius() const {
     return _cutoff_radius;
 }
+
+} // cgmd

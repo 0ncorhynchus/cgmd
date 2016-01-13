@@ -3,6 +3,8 @@
 #include "space.hpp"
 #include "lennard_jones_potential.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 class LennardJonesPotentialTest : public ::testing::Test {

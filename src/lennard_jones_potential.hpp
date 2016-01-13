@@ -3,6 +3,8 @@
 
 #include "inter_potential.hpp"
 
+namespace cgmd {
+
 class LennardJonesPotential : public InterPotential {
 public:
     LennardJonesPotential(double sigma, double epsilon);
@@ -14,5 +16,7 @@ protected:
     const double _sigma;
     const double _epsilon;
 };
+
+} // cgmd
 
 #endif /* __LENNARD_JONES_POTENTIAL_HPP */

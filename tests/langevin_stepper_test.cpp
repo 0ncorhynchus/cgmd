@@ -5,6 +5,8 @@
 #include "model.hpp"
 #include "langevin_stepper.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 class LangevinStepperTest : public ::testing::Test {

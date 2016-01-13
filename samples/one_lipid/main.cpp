@@ -5,6 +5,8 @@
 #include <fene_bond_potential.hpp>
 #include <lowest_order_harmonic_bend_potential.hpp>
 
+using namespace cgmd;
+
 int main() {
     std::shared_ptr<Space> space(std::make_shared<Space>());
     SpaceXYZReader reader("initial_structure.xyz");

@@ -3,6 +3,8 @@
 
 #include <vector>
 
+namespace cgmd {
+
 struct Vector3d {
     double x;
     double y;
@@ -36,5 +38,7 @@ vector_list operator-(const vector_list& lhs, const vector_list& rhs);
 
 vector_list operator+=(vector_list& lhs, const vector_list& rhs);
 vector_list operator-=(vector_list& lhs, const vector_list& rhs);
+
+} // cgmd
 
 #endif /* __MY_VECTOR3D_HPP */

@@ -6,6 +6,8 @@
 #include "model.hpp"
 #include "neighbor_list_manager.hpp"
 
+namespace cgmd {
+
 class Stepper {
 public:
     virtual void step() = 0;
@@ -42,5 +44,7 @@ protected:
     std::vector<double> _const_term4; // == rlan_const(4)
     std::vector<double> _mass_list;
 };
+
+} // cgmd
 
 #endif /* __LANGEVIN_STEPPER_HPP */

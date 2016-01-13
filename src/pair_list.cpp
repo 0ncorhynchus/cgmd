@@ -1,5 +1,7 @@
 #include "pair_list.hpp"
 
+namespace cgmd {
+
 PairList::PairList(std::size_t size) {
     _itrs = std::vector<iterator>(size+1, _container.begin());
 }
@@ -27,3 +29,5 @@ void PairList::add_pair(const id_pair& pair) {
     for (int id(pair.first); id >= 0 && _itrs.at(id) == end; --id)
         _itrs.at(id) = itr;
 }
+
+} // cgmd

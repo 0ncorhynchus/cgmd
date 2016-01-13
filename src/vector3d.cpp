@@ -1,6 +1,8 @@
 #include "vector3d.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 bool operator==(const Vector3d& lhs, const Vector3d& rhs) {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
 }
@@ -80,3 +82,4 @@ vector_list operator-=(vector_list& lhs, const vector_list& rhs) {
     return lhs;
 }
 
+} // cgmd

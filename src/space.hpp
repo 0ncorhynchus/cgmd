@@ -6,6 +6,8 @@
 #include <set>
 #include "vector3d.hpp"
 
+namespace cgmd {
+
 class Space {
 public:
 
@@ -38,5 +40,7 @@ protected:
     vector_list _velocities;
     double _t;
 };
+
+} // cgmd
 
 #endif /* __CGSPACE_HPP*/

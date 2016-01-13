@@ -1,6 +1,8 @@
 #include "harmonic_bond_potential.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 bool HarmonicBondPotential::add_bond(const std::size_t& id0, const std::size_t& id1,
         double r, double k) {
     auto key(make_sorted_pair(id0, id1));
@@ -74,3 +76,5 @@ std::list<std::pair<std::size_t, std::size_t> > HarmonicBondPotential::list_bond
     }
     return list;
 }
+
+} // cgmd

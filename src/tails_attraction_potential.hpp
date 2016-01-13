@@ -3,6 +3,8 @@
 
 #include "inter_potential.hpp"
 
+namespace cgmd {
+
 class TailsAttractionPotential : public InterPotential {
 public:
     TailsAttractionPotential(double inner_radius ,double cutoff_width, double epsilon);
@@ -16,5 +18,7 @@ protected:
     const double _w_c;
     const double _minus_epsilon;
 };
+
+} // cgmd
 
 #endif /* __TAILS_ATTRACTION_POTENTIAL_HPP */

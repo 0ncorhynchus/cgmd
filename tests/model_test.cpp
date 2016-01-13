@@ -3,6 +3,8 @@
 #include "harmonic_bond_potential.hpp"
 #include "model.hpp"
 
+using namespace cgmd;
+
 namespace {
 
 class ModelTest : public ::testing::Test {

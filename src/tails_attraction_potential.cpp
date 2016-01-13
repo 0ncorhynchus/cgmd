@@ -1,6 +1,8 @@
 #include "tails_attraction_potential.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 TailsAttractionPotential::TailsAttractionPotential(double inner_radius, double cutoff_width, double epsilon) :
         _r_c(inner_radius), _w_c(cutoff_width), _minus_epsilon(-1*epsilon) {
 }
@@ -26,3 +28,4 @@ Vector3d TailsAttractionPotential::calculate_unit_force(const Vector3d& vec) con
     return vec/r * _minus_epsilon * sin(M_PI*(r-_r_c)/_w_c)/2 * M_PI/_w_c;
 }
 
+} // cgmd

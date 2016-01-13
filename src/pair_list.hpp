@@ -4,6 +4,8 @@
 #include <vector>
 #include <list>
 
+namespace cgmd {
+
 using id_pair = std::pair<std::size_t, std::size_t>;
 
 class PairList {
@@ -23,5 +25,7 @@ protected:
     std::list<std::size_t> _container;
 
 };
+
+} // cgmd
 
 #endif /* __MY_NEIGHBOR_LIST_HPP */

@@ -7,6 +7,8 @@
 #include <weeks_chandler_anderson_potential.hpp>
 #include <tails_attraction_potential.hpp>
 
+using namespace cgmd;
+
 int main() {
     std::shared_ptr<Space> space(std::make_shared<Space>());
     SpaceXYZReader reader("initial_structure.xyz");

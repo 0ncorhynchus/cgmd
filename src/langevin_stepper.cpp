@@ -3,6 +3,8 @@
 #include <memory>
 #include <math.h>
 
+namespace cgmd {
+
 LangevinStepper::LangevinStepper() : _dt(0), _T(0) {
 }
 
@@ -135,3 +137,5 @@ Vector3d LangevinStepper::get_unit_random_force() {
             r * sin(t) * sin(p),
             r * cos(t));
 }
+
+} // cgmd

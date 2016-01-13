@@ -1,6 +1,8 @@
 #include "fene_bond_potential.hpp"
 #include <cmath>
 
+namespace cgmd {
+
 FENEBondPotential::FENEBondPotential(double r0, double k, double sigma, double epsilon) :
         _r0(r0), _k(k), _weeks_chandler_anderson(sigma, epsilon) {
 }
@@ -38,3 +40,5 @@ vector_list FENEBondPotential::calculate_force(const Space& space) const {
 std::list<std::pair<std::size_t, std::size_t> > FENEBondPotential::list_bonds() const {
     return _bonds;
 }
+
+} // cgmd

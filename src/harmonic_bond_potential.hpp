@@ -4,6 +4,8 @@
 #include "bond_potential.hpp"
 #include <map>
 
+namespace cgmd {
+
 class HarmonicBondPotential : public BondPotential {
 public:
     bool add_bond(const std::size_t& id0, const std::size_t& id1, double r, double k);
@@ -17,5 +19,7 @@ protected:
     std::map<std::pair<std::size_t, std::size_t>,
         std::pair<double, double> > _map;
 };
+
+} // cgmd
 
 #endif /* __HARMONIC_BOND_POTENTIAL_HPP */

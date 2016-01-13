@@ -3,10 +3,14 @@
 
 #include "potential.hpp"
 
+namespace cgmd {
+
 class IntraPotential : public Potential {
 public:
     virtual double calculate_energy(const Space& space) const = 0;
     virtual vector_list calculate_force(const Space& space) const = 0;
 };
+
+} // cgmd
 
 #endif
