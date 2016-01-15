@@ -44,4 +44,12 @@ const Vector3d& Space::velocity(std::size_t index) const {
     return _velocities.at(index);
 }
 
+Vector3d Space::direct(std::size_t i, std::size_t j) const {
+    return _coordinates.at(j) - _coordinates.at(i);
+}
+
+double Space::distance(std::size_t i, std::size_t j) const {
+    return norm(direct(i,j));
+}
+
 } // cgmd

@@ -24,6 +24,9 @@ public:
     Vector3d& velocity(std::size_t index);
     const Vector3d& velocity(std::size_t index) const;
 
+    virtual Vector3d direct(std::size_t i, std::size_t j) const;
+    virtual double distance(std::size_t i, std::size_t j) const;
+
     std::size_t num_beads() const {
         return _coordinates.size();
     }

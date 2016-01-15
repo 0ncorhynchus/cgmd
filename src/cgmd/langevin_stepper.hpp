@@ -26,6 +26,8 @@ public:
 
 protected:
 
+    void initialize_parameters();
+    void initialize_neighbor_list_managers();
     double get_unit_white_noise();
     Vector3d get_unit_random_force();
 

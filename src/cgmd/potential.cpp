@@ -13,20 +13,16 @@ double InterPotential::calculate_energy(const Space& space) const {
     double energy(0);
     if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
         const std::size_t size(neighbor_list->size());
-        for (std::size_t i(0); i < size; ++i) {
-            const Vector3d coord(space.coordinate(i));
-            for (auto itr(neighbor_list->begin(i)); itr != neighbor_list->end(i); ++itr) {
-                energy += calculate_unit_energy(norm(space.coordinate(*itr) - coord));
-            }
-        }
+        for (std::size_t i(0); i < size; ++i)
+            for (auto itr(neighbor_list->begin(i)); itr != neighbor_list->end(i); ++itr)
+                energy += calculate_unit_energy(space.distance(i, *itr));
     } else {
         const std::size_t num_beads(space.num_beads());
         for (std::size_t i(0); i < num_beads-1; ++i) {
-            const std::string symbol0(space.symbol(i));
-            const Vector3d coord(space.coordinate(i));
+            const std::string& symbol0(space.symbol(i));
             for (std::size_t j(i+1); j < num_beads; ++j) {
                 if (is_valid_pair(symbol0, space.symbol(j)))
-                    energy += calculate_unit_energy(norm(space.coordinate(j) - coord));
+                    energy += calculate_unit_energy(space.distance(i, j));
             }
         }
     }
@@ -38,27 +34,23 @@ vector_list InterPotential::calculate_force(const Space& space) const {
     vector_list forces(num_beads, Vector3d(0,0,0));
     if(std::shared_ptr<PairList> neighbor_list = _get_neighbor_list()) {
         const std::size_t size(neighbor_list->size());
-        for (std::size_t i(0); i < size; ++i) {
-            const Vector3d coord(space.coordinate(i));
+        for (std::size_t i(0); i < size; ++i)
             for (auto itr(neighbor_list->begin(i)); itr != neighbor_list->end(i); ++itr) {
-                const Vector3d force(calculate_unit_force(space.coordinate(*itr) - coord));
+                const Vector3d force(calculate_unit_force(space.direct(i, *itr)));
                 forces.at(i) -= force;
                 forces.at(*itr) += force;
             }
-        }
     } else {
         for (std::size_t i(0); i < num_beads-1; ++i) {
-            const std::string symbol0(space.symbol(i));
+            const std::string& symbol0(space.symbol(i));
             if (symbol0 != _pair.first && symbol0 != _pair.second)
                 continue;
-            const Vector3d coord(space.coordinate(i));
-            for (std::size_t j(i+1); j < num_beads; ++j) {
+            for (std::size_t j(i+1); j < num_beads; ++j)
                 if (is_valid_pair(symbol0, space.symbol(j))) {
-                    const Vector3d force(calculate_unit_force(space.coordinate(j) - coord));
+                    const Vector3d force(calculate_unit_force(space.direct(i, j)));
                     forces.at(i) -= force;
                     forces.at(j) += force;
                 }
-            }
         }
     }
     return forces;

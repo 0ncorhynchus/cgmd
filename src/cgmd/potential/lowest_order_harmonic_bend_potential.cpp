@@ -14,9 +14,7 @@ void LowestOrderHarmonicBendPotential::add_pair(const std::pair<std::size_t, std
 double LowestOrderHarmonicBendPotential::calculate_energy(const Space& space) const {
     double energy(0.0);
     for (auto itr(_pairs.begin()); itr != _pairs.end(); ++itr) {
-        const Vector3d vec0(space.coordinate((*itr).first));
-        const Vector3d vec1(space.coordinate((*itr).second));
-        const double r(norm(vec1 - vec0));
+        const double r(space.distance((*itr).first, (*itr).second));
         energy += _k * pow(r-_r0, 2) / 2;
     }
     return energy;
@@ -25,9 +23,7 @@ double LowestOrderHarmonicBendPotential::calculate_energy(const Space& space) co
 vector_list LowestOrderHarmonicBendPotential::calculate_force(const Space& space) const {
     vector_list forces(space.num_beads(), Vector3d(0,0,0));
     for (auto itr(_pairs.begin()); itr != _pairs.end(); ++itr) {
-        const Vector3d vec0(space.coordinate((*itr).first));
-        const Vector3d vec1(space.coordinate((*itr).second));
-        const Vector3d vec(vec1 - vec0);
+        const Vector3d vec(space.direct((*itr).first, (*itr).second));
         const double r(norm(vec));
         const Vector3d force(vec * _k * (_r0 - r) / r);
         forces.at((*itr).first) -= force;

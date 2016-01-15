@@ -18,6 +18,7 @@ LangevinStepper::LangevinStepper(const LangevinStepper& stepper)
     COPY_VECTOR(_const_term3);
     COPY_VECTOR(_const_term4);
     COPY_VECTOR(_mass_list);
+    COPY_VECTOR(_neighbor_list_managers);
 #undef COPY_VECTOR
 }
 
@@ -33,16 +34,26 @@ LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,
     _const_term4 = std::vector<double>(num_beads);
     _mass_list = std::vector<double>(num_beads);
 
-    // Initialize Parameters
+    initialize_parameters();
+    initialize_neighbor_list_managers();
+}
+
+void LangevinStepper::initialize_parameters() {
+    const std::size_t num_beads(_space->num_beads());
     for (std::size_t id(0); id < num_beads; ++id) {
         const double friction(_model->get_friction(id));
         const double mass(_model->get_mass(id));
         _deviation[id] = sqrt(2*friction*kB*_T/mass/_dt);
-        _const_term2[id] = (1-friction*_dt/2)*(1-friction*_dt/2+pow(friction*dt/2,2));
+        _const_term2[id] = (1-friction*_dt/2)*(1-friction*_dt/2+pow(friction*_dt/2,2));
         _const_term3[id] = _dt/2*(1-friction*_dt/2);
         _const_term4[id] = _dt*(1-friction*_dt/2);
         _mass_list[id] = mass;
     }
+
+}
+
+void LangevinStepper::initialize_neighbor_list_managers() {
+    const std::size_t num_beads(_space->num_beads());
 
     PairList bond_pair(num_beads);
     std::list<std::pair<std::size_t, std::size_t> > bonds(_model->list_bonds());
@@ -61,7 +72,6 @@ LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,
         }
     }
 
-    // Create NeighborListManagers
     Model::inter_potential_container inter_potentials(_model->list_inter_potentials());
     for (auto itr(inter_potentials.begin()); itr != inter_potentials.end(); ++itr) {
         const double r_c((*itr)->get_cutoff_radius());

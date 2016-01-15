@@ -16,8 +16,7 @@ NeighborListManager::NeighborListManager(std::size_t num_beads, double r_c, doub
 void NeighborListManager::update(const Space& space) {
     _neighbor_list->clear();
     for (auto itr(_candidates.begin()); itr != _candidates.end(); ++itr) {
-        const double r(norm(space.coordinate((*itr).first)-space.coordinate((*itr).second)));
-        if (r <= _list_radius)
+        if (space.distance((*itr).first, (*itr).second) <= _list_radius)
             _neighbor_list->add_pair(*itr);
     }
     _displacements = std::list<double>(_displacements.size(), 0.0);

@@ -31,17 +31,18 @@ double HarmonicBondPotential::get_k(const std::size_t& id0, const std::size_t& i
 }
 
 double HarmonicBondPotential::calculate_energy(const Space& space) const {
+    const std::size_t num_beads(space.num_beads());
     double energy(0);
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
         const std::size_t former((*itr).first.first),
                           latter((*itr).first.second);
-        if (former < 0 || former >= space.num_beads() ||
-                latter < 0 || latter >= space.num_beads())
+        if (former < 0 || former >= num_beads ||
+                latter < 0 || latter >= num_beads)
             continue;
         const double r((*itr).second.first);
         const double k((*itr).second.second);
-        const double R(norm(space.coordinate(former) - space.coordinate(latter)));
+        const double R(space.distance(former, latter));
         energy += k * pow(R - r, 2.0);
     }
 
@@ -49,19 +50,20 @@ double HarmonicBondPotential::calculate_energy(const Space& space) const {
 }
 
 vector_list HarmonicBondPotential::calculate_force(const Space& space) const {
-    vector_list force_list(space.num_beads(), Vector3d(0,0,0));
+    const std::size_t num_beads(space.num_beads());
+    vector_list force_list(num_beads, Vector3d(0,0,0));
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
         const std::size_t former((*itr).first.first),
                           latter((*itr).first.second);
-        if (former < 0 || former >= space.num_beads() ||
-                latter < 0 || latter >= space.num_beads())
+        if (former < 0 || former >= num_beads ||
+                latter < 0 || latter >= num_beads)
             continue;
         const double r((*itr).second.first);
         const double k((*itr).second.second);
-        const Vector3d vec(space.coordinate(former) - space.coordinate(latter));
+        const Vector3d vec(space.direct(former, latter));
         const double R(norm(vec));
-        const double strength(2.0*k*(R-r)/R);
+        const double strength(-2.0*k*(R-r)/R);
         force_list.at(former) -= vec * strength;
         force_list.at(latter) += vec * strength;
     }
