@@ -20,6 +20,8 @@ void Space::reset(const std::size_t& size) {
     _t = 0;
 }
 
+void Space::initialize() {}
+
 std::string& Space::symbol(std::size_t index) {
     return _symbols.at(index);
 }
@@ -34,6 +36,10 @@ Vector3d& Space::coordinate(std::size_t index) {
 
 const Vector3d& Space::coordinate(std::size_t index) const {
     return _coordinates.at(index);
+}
+
+void Space::move(std::size_t index, const Vector3d& direction) {
+    _coordinates.at(index) += direction;
 }
 
 Vector3d& Space::velocity(std::size_t index) {

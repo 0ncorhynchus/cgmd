@@ -1,6 +1,7 @@
 set(TEST_NAMES
     vector3d_test
     space_test
+    periodic_space_test
     model_test
     space_io_test
     langevin_stepper_test

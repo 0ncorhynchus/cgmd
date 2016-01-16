@@ -66,6 +66,7 @@ void SpaceXYZReader::load(Space& space) const {
         space.coordinate(id) = (*itr).second;
         ++id;
     }
+    space.initialize();
 }
 
 } // cgmd

@@ -15,6 +15,8 @@ public:
     Space(const std::size_t& size);
     void reset(const std::size_t& size);
 
+    virtual void initialize();
+
     std::string& symbol(std::size_t index);
     const std::string& symbol(std::size_t index) const;
 
@@ -23,6 +25,8 @@ public:
 
     Vector3d& velocity(std::size_t index);
     const Vector3d& velocity(std::size_t index) const;
+
+    virtual void move(std::size_t index, const Vector3d& direction);
 
     virtual Vector3d direct(std::size_t i, std::size_t j) const;
     virtual double distance(std::size_t i, std::size_t j) const;
