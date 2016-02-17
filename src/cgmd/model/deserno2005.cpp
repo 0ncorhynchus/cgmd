@@ -10,8 +10,9 @@ namespace cgmd {
 const std::string Deserno2005ModelFactory::HEAD = "LH";
 const std::string Deserno2005ModelFactory::TAIL = "LT";
 
-Deserno2005ModelFactory::Deserno2005ModelFactory(double sigma, double epsilon) :
+Deserno2005ModelFactory::Deserno2005ModelFactory(double sigma, double w_c, double epsilon) :
     sigma(sigma),
+    w_c(w_c),
     epsilon(epsilon),
     num_lipid(1) {
 }
@@ -71,7 +72,7 @@ std::shared_ptr<Model> Deserno2005ModelFactory::create() const {
     std::shared_ptr<TailsAttractionPotential> tails_attraction(
             new TailsAttractionPotential(
                 /* r_c= */pow(2,1.0/6.0)*sigma,
-                /* w_c= */0.8*sigma,
+                /* w_c= */w_c,
                 /* e =  */epsilon));
     tails_attraction->set_pair("LT", "LT");
     model->add_potential(tails_attraction);

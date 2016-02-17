@@ -14,12 +14,12 @@ int main() {
 
     const std::size_t num_beads(space->num_beads());
     std::shared_ptr<Model> model(new Model(num_beads));
-    model->set_property(0, 1.0e-10, 0.2);
-    model->set_property(1, 1.0e-10, 0.2);
-    model->set_property(2, 1.0e-10, 0.2);
+    model->set_property(0, 4.06e-25, 0.2*10e4);
+    model->set_property(1, 4.06e-25, 0.2*10e4);
+    model->set_property(2, 4.06e-25, 0.2*10e4);
 
-    const double epsilon(1.0e-20);
-    const double sigma(1.0e-10);
+    const double epsilon(1.0e-23);
+    const double sigma(6.0e-10);
 
     std::shared_ptr<FENEBondPotential> head_tail_bond(
             new FENEBondPotential(
@@ -48,7 +48,7 @@ int main() {
 
     std::random_device rnd;
     std::mt19937 gen = std::mt19937(rnd());
-    LangevinStepper stepper(space, model, gen, /* dt= */1.0e-9, /* T= */300);
+    LangevinStepper stepper(space, model, gen, /* dt= */1.0e-15, /* T= */300);
 
     SpaceXYZWriter writer("result_structure.xyz");
     for (int step(0); step <= 1000000; ++step) {

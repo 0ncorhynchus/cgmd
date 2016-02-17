@@ -5,13 +5,9 @@
 #include "space.hpp"
 #include "model.hpp"
 #include "neighbor_list_manager.hpp"
+#include "stepper.hpp"
 
 namespace cgmd {
-
-class Stepper {
-public:
-    virtual void step() = 0;
-};
 
 class LangevinStepper : public Stepper {
 public:

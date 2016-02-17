@@ -12,10 +12,11 @@ public:
     const static std::string HEAD;
     const static std::string TAIL;
 
-    Deserno2005ModelFactory(double sigma, double epsilon);
+    Deserno2005ModelFactory(double sigma, double w_c, double epsilon);
     std::shared_ptr<Model> create() const;
 
     const double sigma;
+    const double w_c;
     const double epsilon;
     std::size_t num_lipid;
 };

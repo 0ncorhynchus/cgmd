@@ -56,8 +56,10 @@ void SpaceXYZReader::load(Space& space) const {
         beads.push_back(std::make_pair(symbol, vec * 1.0e-10));
     }
 
-    if (beads.size() != num)
+    if (beads.size() != num) {
+        std::cerr << "Error" << std::endl;
         return; // Should be assert
+    }
 
     std::size_t id(0);
     space.reset(num);

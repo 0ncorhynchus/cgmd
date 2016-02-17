@@ -13,7 +13,9 @@ int main() {
     const std::size_t num_lipid(100);
 
     Deserno2005ModelFactory factory(
-            /* sigma= */1.0e-10, /* epsilon= */5.0e-20);
+            /* sigma= */1.0e-10,
+            /* w_c= */0.8e-10,
+            /* epsilon= */5.0e-20);
     factory.num_lipid = num_lipid;
     std::shared_ptr<Model> model(factory.create());
 

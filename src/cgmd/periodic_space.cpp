@@ -1,5 +1,7 @@
 #include "periodic_space.hpp"
 #include <cmath>
+#include <sstream>
+#include <iostream>
 
 namespace cgmd {
 
@@ -23,6 +25,19 @@ void PeriodicSpace::initialize() {
 }
 
 void PeriodicSpace::move(std::size_t index, const Vector3d& direction) {
+    if (abs(direction.x) >= _x ||
+        abs(direction.y) >= _y ||
+        abs(direction.z) >= _z) {
+        std::ostringstream oss;
+        oss << "[PeriodicSpace Error] "
+            << index << " : ("
+            << direction.x << ", "
+            << direction.y << ", "
+            << direction.z << ")";
+        std::string str(oss.str());
+        std::cerr << str << std::endl;
+        throw str.c_str();
+    }
     Space::move(index, direction);
     adjust(index);
 }
