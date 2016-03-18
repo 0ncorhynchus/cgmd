@@ -4,6 +4,7 @@
 #include <sstream>
 #include <list>
 #include <iostream>
+#include <stdexcept>
 
 /*
  * The unit is angstrom.
@@ -57,8 +58,7 @@ void SpaceXYZReader::load(Space& space) const {
     }
 
     if (beads.size() != num) {
-        std::cerr << "Error" << std::endl;
-        return; // Should be assert
+        throw std::runtime_error("Not match # of beads");
     }
 
     std::size_t id(0);

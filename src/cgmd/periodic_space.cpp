@@ -2,6 +2,7 @@
 #include <cmath>
 #include <sstream>
 #include <iostream>
+#include <stdexcept>
 
 namespace cgmd {
 
@@ -34,9 +35,7 @@ void PeriodicSpace::move(std::size_t index, const Vector3d& direction) {
             << direction.x << ", "
             << direction.y << ", "
             << direction.z << ")";
-        std::string str(oss.str());
-        std::cerr << str << std::endl;
-        throw str.c_str();
+        throw std::runtime_error(oss.str());
     }
     Space::move(index, direction);
     adjust(index);
